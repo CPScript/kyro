@@ -18,6 +18,8 @@
 * Implement system monitoring tools to check CPU usage, memory, and file system health.
 * Provide user feedback on system performance and potential bottlenecks.
 * Create user-friendly documentation to help new users understand your OS and its features.
+* Implement drivers
+* Make a team to maintain and fix all errors
 
   a simple and user-friendly operating system designed with privacy and security in mind. This document provides an overview of how to install, configure, and use Privacy OS effectively.
 
