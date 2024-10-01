@@ -1,3 +1,6 @@
+## Want to contribute?
+* I would love help with the development of this project. Create a request! <3
+
 ### Need to:
 * Implement a logging system to track events, errors, and user actions. This helps with debugging and user support.
 * Enhance error handling throughout your code, providing more informative messages for users.
