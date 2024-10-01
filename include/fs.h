@@ -10,15 +10,14 @@
 
 typedef struct {
     char name[FILENAME_LENGTH];
-    char content[FILE_CONTENT_LENGTH]; // Add content field
-    bool is_directory; // Flag to indicate if it's a directory
+    char content[FILE_CONTENT_LENGTH];
+    bool is_directory;
 } File;
 
-File file_list[MAX_FILES]; // Array to store files
-int file_count;            // Count of registered files
+File file_list[MAX_FILES];
+int file_count;
 
-bool create_file(const char *name);
-bool create_directory(const char *name);
+bool create_file(const char *name, bool is_directory);
 bool delete_file(const char *name);
 bool delete_directory(const char *name);
 void list_files();
