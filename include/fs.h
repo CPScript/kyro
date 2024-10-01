@@ -3,8 +3,8 @@
 
 #include <stdbool.h>
 
-#define MAX_FILES 100
-#define FILENAME_LENGTH 50
+#define MAX_FILES 5000
+#define FILENAME_LENGTH 100
 
 typedef struct {
     char name[FILENAME_LENGTH];
