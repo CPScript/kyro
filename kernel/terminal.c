@@ -1,31 +1,49 @@
-#include "terminal.h"
+#include "user.h"
+#include "fs.h"
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_COMMAND_LENGTH 100
-
-void execute_command(const char *command) {
-    if (strcmp(command, "exit") == 0) {
-        print_message("Exiting...");
-        // Handle exit logic
-    } else if (strcmp(command, "help") == 0) {
-        print_message("Available commands: help, exit, ls, cat <filename>");
+// Function to process commands
+void process_command(const char *command) {
+    if (strncmp(command, "adduser ", 8) == 0) {
+        char username[USERNAME_LENGTH];
+        char password[PASSWORD_LENGTH];
+        sscanf(command + 8, "%s %s", username, password);
+        add_user(username, password, false); // Regular user
+    } else if (strncmp(command, "login ", 6) == 0) {
+        char username[USERNAME_LENGTH];
+        char password[PASSWORD_LENGTH];
+        sscanf(command + 6, "%s %s", username, password);
+        if (authenticate(username, password)) {
+            printf("Login successful!\n");
+        } else {
+            printf("Login failed.\n");
+        }
+    } else if (strncmp(command, "create ", 7) == 0) {
+        char filename[FILENAME_LENGTH];
+        sscanf(command + 7, "%s", filename);
+        create_file(filename);
+    } else if (strncmp(command, "mkdir ", 6) == 0) {
+        char dirname[FILENAME_LENGTH];
+        sscanf(command + 6, "%s", dirname);
+        create_directory(dirname);
+    } else if (strncmp(command, "rmdir ", 6) == 0) {
+        char dirname[FILENAME_LENGTH];
+        sscanf(command + 6, "%s", dirname);
+        delete_directory(dirname);
+    } else if (strncmp(command, "delete ", 7) == 0) {
+        char filename[FILENAME_LENGTH];
+        sscanf(command + 7, "%s", filename);
+        delete_file(filename);
     } else if (strncmp(command, "cat ", 4) == 0) {
-        char *filename = command + 4;
-        read_file(filename); // Call the read file function
+        char filename[FILENAME_LENGTH];
+        sscanf(command + 4, "%s", filename);
+        read_file(filename);
     } else if (strcmp(command, "ls") == 0) {
-        print_message("List of files: file1.txt, file2.txt");
+        list_files();
+    } else if (strcmp(command, "help") == 0) {
+        printf("Available commands: adduser, login, create, mkdir, rmdir, delete, cat, ls, help\n");
     } else {
-        print_message("Unknown command.");
-    }
-}
-
-void run_terminal() {
-    char command[MAX_COMMAND_LENGTH];
-    
-    while (1) {
-        print_message("Enter command: ");
-        gets(command); // Note: this is unsafe, needs better input handling
-        execute_command(command);
+        printf("Unknown command.\n");
     }
 }
