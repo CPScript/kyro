@@ -7,8 +7,12 @@ bool add_user(const char *username, const char *password, bool is_admin) {
         printf("User limit reached.\n");
         return false;
     }
+    if (strlen(username) >= USERNAME_LENGTH || strlen(password) >= PASSWORD_LENGTH) {
+        printf("Username or password too long.\n");
+        return false;
+    }
     strcpy(user_list[user_count].username, username);
-    strcpy(user_list[user_count].password, password);
+    strcpy(user_list[user_count].password, password); // need to consider hashing in the future
     user_list[user_count].is_admin = is_admin;
     user_count++;
     return true;
