@@ -4,19 +4,23 @@
 #include <stdbool.h>
 
 #define MAX_FILES 5000
-#define FILENAME_LENGTH 100
+#define FILENAME_LENGTH 50
+#define FILE_CONTENT_LENGTH 256
 
 typedef struct {
     char name[FILENAME_LENGTH];
+    char content[FILE_CONTENT_LENGTH]; // Add content field
     bool is_directory; // Flag to indicate if it's a directory
-    // will add more file attributes later (like permissions, size, etc.)
 } File;
 
 File file_list[MAX_FILES]; // Array to store files
 int file_count = 0;         // Count of registered files
 
-bool create_file(const char *name, bool is_directory);
+bool create_file(const char *name);
+bool create_directory(const char *name);
 bool delete_file(const char *name);
+bool delete_directory(const char *name);
 void list_files();
+bool read_file(const char *name);
 
-#endif // FS_H
+#endif
