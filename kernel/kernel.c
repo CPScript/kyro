@@ -12,7 +12,7 @@ void clear_screen() {
     }
 }
 
-void main() {
+void _start() {
     clear_screen();
     print_message("Welcome to Privacy OS!");
     start_tor(); // Start Tor during initialization
