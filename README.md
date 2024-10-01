@@ -1,3 +1,6 @@
+# PLEASE SHARE!
+* Help me make this repo popular via showing and talking to people about it, so it can get attention and contributors
+
 ## Want to contribute?
 * I would love help with the development of this project. Create a request! <3
 
