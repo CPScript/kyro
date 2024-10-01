@@ -9,7 +9,7 @@
 
 typedef struct {
     char username[USERNAME_LENGTH];
-    char password[PASSWORD_LENGTH];
+    unsigned long password_hash; // Store password hash instead of plain text
     bool is_admin; // Flag for user roles
 } User;
 
