@@ -138,6 +138,6 @@ This OS supports basic networking capabilities. Upon first boot, it will check f
 This will help anonymize your internet traffic.
 
 ### Troubleshooting
-* **OS Won't Boot**: Ensure you built the OS image correctly and are using the appropriate emulator settings.
+* **OS Won't Boot**: Ensure you built the OS image correctly. If your using a VM to boot then make sure you are using the appropriate emulator settings.
 * **User Commands Not Working**: Check that you're logged in as a user with sufficient permissions.
 * **File Operations Fail**: Ensure that the file or directory exists and that you have the necessary permissions.
