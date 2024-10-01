@@ -1,27 +1,23 @@
-#ifndef FS_H
-#define FS_H
-
-#include <stdbool.h>
+#include "fs.h"
+#include <stdio.h>
 #include <string.h>
 
-#define MAX_FILES 5000
-#define FILENAME_LENGTH 50
-#define FILE_CONTENT_LENGTH 256
-
-typedef struct {
-    char name[FILENAME_LENGTH];
-    char content[FILE_CONTENT_LENGTH]; // Add content field
-    bool is_directory; // Flag to indicate if it's a directory
-} File;
-
-File file_list[MAX_FILES]; // Array to store files
-int file_count;            // Count of registered files
-
-bool create_file(const char *name);
-bool create_directory(const char *name);
-bool delete_file(const char *name);
-bool delete_directory(const char *name);
-void list_files();
-bool read_file(const char *name);
-
-#endif
+bool create_file(const char *name) {
+    if (file_count >= MAX_FILES) {
+        printf("File limit reached.\n");
+        return false;
+    }
+    if (strlen(name) == 0) {
+        printf("Filename cannot be empty.\n");
+        return false;
+    }
+    if (strlen(name) >= FILENAME_LENGTH) {
+        printf("Filename too long.\n");
+        return false;
+    }
+    strcpy(file_list[file_count].name, name);
+    file_list[file_count].is_directory = false;
+    file_list[file_count].content[0] = '\0'; // Initialize content
+    file_count++;
+    return true;
+}
