@@ -21,9 +21,8 @@ void init_file_system() {
     printf("File system initialized with %d files.\n", file_count);
 }
 
-int main() {
+void kernel_init() {
     init_users();
     init_file_system();
-    printf("Initialization complete. You can now boot the OS.\n");
-    return 0;
+    printf("Initialization complete. You can now boot kyro OS.\n");
 }
