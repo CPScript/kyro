@@ -34,7 +34,7 @@ void kernel_init() {
 
 void kernel_main() {
     clear_screen();
-    print_message("Welcome to Privacy OS!");
+    print_message("Welcome to kyro OS!\nYour in control!");
     keyboard_init();
     mouse_init();
     start_tor(); // Start Tor during initialization
