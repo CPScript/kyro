@@ -1,3 +1,5 @@
+## doing testing right now, please dont run the OS as your waisting yout time. im going to reset it to its origonal version and try again
+
 > Kyro : Your in control / A simple and user-friendly operating system designed with privacy and security in mind.
 
 ### **Want to contribute?**
