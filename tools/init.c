@@ -17,16 +17,13 @@ void init_file_system() {
     // Optionally, you could create some default files or directories
     create_directory("home");
     create_file("readme.txt");
-    strcpy(file_list[0].content, "Welcome to the OS!\n");
+    strcpy(file_list[file_count - 1].content, "Welcome to the kyro OS!\nenjoy your stay.");
     printf("File system initialized with %d files.\n", file_count);
 }
 
 int main() {
     init_users();
-
     init_file_system();
-
     printf("Initialization complete. You can now boot the OS.\n");
-
     return 0;
 }
