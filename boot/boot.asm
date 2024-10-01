@@ -16,4 +16,4 @@ _start:
     jmp ax
 
 section .data
-message db 'Booting OS...', 0
+message db 'Booting Kyro OS...', 0
