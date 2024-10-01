@@ -7,6 +7,10 @@ bool create_file(const char *name) {
         printf("File limit reached.\n");
         return false;
     }
+    if (strlen(name) >= FILENAME_LENGTH) {
+        printf("Filename too long.\n");
+        return false;
+    }
     strcpy(file_list[file_count].name, name);
     file_list[file_count].is_directory = false;
     file_list[file_count].content[0] = '\0'; // Initialize content
@@ -28,6 +32,7 @@ bool delete_file(const char *name) {
             return true; // File deleted
         }
     }
+    printf("File not found.\n");
     return false; // File not found
 }
 
@@ -42,6 +47,7 @@ bool read_file(const char *name) {
             return true;
         }
     }
+    printf("File not found.\n");
     return false; // File not found
 }
 
