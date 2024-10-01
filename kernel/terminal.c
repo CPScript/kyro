@@ -1,7 +1,21 @@
+#include "terminal.h"
 #include "user.h"
 #include "fs.h"
 #include <stdio.h>
 #include <string.h>
+
+void terminal_init() {
+    printf("Terminal initialized.\n");
+}
+
+void run_terminal() {
+    char command[256];
+    while (1) {
+        printf("terminal> ");
+        fgets(command, 256, stdin);
+        process_command(command);
+    }
+}
 
 void process_adduser_command(const char *command) {
     char username[USERNAME_LENGTH];
