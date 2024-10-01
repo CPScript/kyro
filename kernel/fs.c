@@ -1,40 +1,33 @@
 #include "fs.h"
+#include <stdio.h>
 #include <string.h>
 
-#define MAX_FILES 10
-#define FILENAME_LEN 20
-
-typedef struct {
-    char name[FILENAME_LEN];
-    char content[100]; // Simple file content
-} File;
-
-File files[MAX_FILES];
-int file_count = 0;
-
-void init_file_system() {
-    // Initialize with some dummy files
-    strcpy(files[file_count].name, "file1.txt");
-    strcpy(files[file_count++].content, "This is file 1 content.");
-    
-    strcpy(files[file_count].name, "file2.txt");
-    strcpy(files[file_count++].content, "This is file 2 content.");
+bool create_file(const char *name, bool is_directory) {
+    if (file_count >= MAX_FILES) {
+        printf("File limit reached.\nPlease clear some space\n");
+        return false;
+    }
+    strcpy(file_list[file_count].name, name);
+    file_list[file_count].is_directory = is_directory;
+    file_count++;
+    return true;
 }
 
-File* find_file(const char *filename) {
+bool delete_file(const char *name) {
     for (int i = 0; i < file_count; i++) {
-        if (strcmp(files[i].name, filename) == 0) {
-            return &files[i];
+        if (strcmp(file_list[i].name, name) == 0) {
+            for (int j = i; j < file_count - 1; j++) {
+                file_list[j] = file_list[j + 1]; // Shift files left
+            }
+            file_count--;
+            return true; // File deleted
         }
     }
-    return NULL;
+    return false; // File not found
 }
 
-void read_file(const char *filename) {
-    File *file = find_file(filename);
-    if (file) {
-        print_message(file->content);
-    } else {
-        print_message("File not found.");
+void list_files() {
+    for (int i = 0; i < file_count; i++) {
+        printf("%s%s\n", file_list[i].name, file_list[i].is_directory ? "/" : "");
     }
 }
