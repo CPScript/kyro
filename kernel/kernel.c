@@ -2,6 +2,7 @@
 #include "user.h"
 #include "fs.h"
 #include "terminal.h"
+#include "networking.h"
 
 void clear_screen() {
     char *video_memory = (char *)0xb8000;
@@ -13,10 +14,12 @@ void clear_screen() {
 
 void main() {
     clear_screen();
-    print_message("Welcome! enjoy!");
-    init_users(); // Initialize user-accounts
-    init_file_system(); // Initialize file-system
-    run_terminal(); // Start terminal
+    print_message("Welcome to Privacy OS!");
+    start_tor(); // Start Tor during initialization
+    init_users(); // Initialize user accounts
+    login_prompt(); // Prompt for user login
+    init_file_system(); // Initialize file system
+    run_terminal(); // Start the terminal
 
-    while (1) {} // Keep running
+    while (1) {}
 }
