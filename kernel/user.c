@@ -4,7 +4,7 @@
 
 bool add_user(const char *username, const char *password, bool is_admin) {
     if (user_count >= MAX_USERS) {
-        printf("User  limit reached.\n");
+        printf("User  limit reached.\nOnly 12 characters allowed!");
         return false;
     }
     if (strlen(username) == 0) {
@@ -12,7 +12,7 @@ bool add_user(const char *username, const char *password, bool is_admin) {
         return false;
     }
     if (strlen(username) >= USERNAME_LENGTH) {
-        printf("Username too long.\n");
+        printf("Username too long.\nOnly 12 characters allowed!");
         return false;
     }
     if (strlen(password) == 0) {
