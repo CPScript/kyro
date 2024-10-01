@@ -2,6 +2,7 @@
 #define FS_H
 
 #include <stdbool.h>
+#include <string.h>
 
 #define MAX_FILES 5000
 #define FILENAME_LENGTH 50
@@ -14,7 +15,7 @@ typedef struct {
 } File;
 
 File file_list[MAX_FILES]; // Array to store files
-int file_count = 0;         // Count of registered files
+int file_count;            // Count of registered files
 
 bool create_file(const char *name);
 bool create_directory(const char *name);
