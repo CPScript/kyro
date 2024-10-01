@@ -4,8 +4,8 @@
 #include <stdbool.h>
 
 #define MAX_USERS 10
-#define USERNAME_LENGTH 50
-#define PASSWORD_LENGTH 50
+#define USERNAME_LENGTH 12
+#define PASSWORD_LENGTH 12
 
 typedef struct {
     char username[USERNAME_LENGTH];
@@ -19,4 +19,4 @@ int user_count = 0;         // Count of registered users
 bool add_user(const char *username, const char *password, bool is_admin);
 bool authenticate(const char *username, const char *password);
 
-#endif
+#endif // USER_H
