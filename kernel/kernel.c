@@ -2,10 +2,12 @@
 #include "drivers/keyboard.h"
 #include "drivers/mouse.h"
 #include "drivers/network.h"
-#include "fs/fs.h"
-#include "terminal/terminal.h"
-#include "user/user.h"
-#include "networking.h"
+#include "fs.h"
+#include "terminal.h"
+#include "user.h"
+#include "shell.h"
+#include "package_manager.h"
+#include "scripting.h"
 
 void clear_screen() {
     char *video_memory = (char *)0xb8000;
@@ -34,17 +36,19 @@ void kernel_init() {
 
 void kernel_main() {
     clear_screen();
-    print_message("Welcome to kyro OS!\nYour in control!");
+    print_message("Welcome to Kyro OS!\nYour in control!");
     keyboard_init();
     mouse_init();
-    start_tor(); // Start Tor during initialization
     network_init();
     fs_init();
     terminal_init();
     user_init();
-    kernel_init(); // Initialize user accounts and file system
-    login_prompt(); // Prompt for user login
-    run_terminal(); // Start the terminal
-
+    shell_init();
+    package_manager_init();
+    scripting_init();
+    kernel_init();
+    login_prompt();
+    run_terminal();
+    run_shell();
     while (1) {}
 }
