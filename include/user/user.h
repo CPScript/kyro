@@ -13,7 +13,7 @@ typedef struct {
     bool is_admin; // Flag for user roles
 } User;
 
-User user_list[MAX_USERS]; // Array to store users
+User  user_list[MAX_USERS]; // Array to store users
 int user_count = 0;         // Count of registered users
 
 bool add_user(const char *username, const char *password, bool is_admin);
