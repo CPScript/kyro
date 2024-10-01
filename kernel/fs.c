@@ -2,7 +2,19 @@
 #include <stdio.h>
 #include <string.h>
 
-bool create_file(const char *name) {
+#define MAX_FILE_NAME_LENGTH 50
+#define MAX_FILE_CONTENT_LENGTH 256
+
+typedef struct {
+    char name[MAX_FILE_NAME_LENGTH];
+    char content[MAX_FILE_CONTENT_LENGTH];
+    bool is_directory;
+} File;
+
+File file_list[MAX_FILES];
+int file_count = 0;
+
+bool create_file(const char *name, bool is_directory) {
     if (file_count >= MAX_FILES) {
         printf("File limit reached.\n");
         return false;
@@ -11,35 +23,19 @@ bool create_file(const char *name) {
         printf("Filename cannot be empty.\n");
         return false;
     }
-    if (strlen(name) >= FILENAME_LENGTH) {
+    if (strlen(name) >= MAX_FILE_NAME_LENGTH) {
         printf("Filename too long.\n");
         return false;
     }
     strcpy(file_list[file_count].name, name);
-    file_list[file_count].is_directory = false;
-    file_list[file_count].content[0] = '\0'; // Initialize content
+    file_list[file_count].is_directory = is_directory;
+    file_list[file_count].content[0] = '\0';
     file_count++;
     return true;
 }
 
-bool create_directory(const char *name) {
-    if (file_count >= MAX_FILES) {
-        printf("File limit reached.\n");
-        return false;
-    }
-    if (strlen(name) == 0) {
-        printf("Directory name cannot be empty.\n");
-        return false;
-    }
-    if (strlen(name) >= FILENAME_LENGTH) {
-        printf("Directory name too long.\n");
-        return false;
-    }
-    strcpy(file_list[file_count].name, name);
-    file_list[file_count].is_directory = true;
-    file_list[file_count].content[0] = '\0'; // Initialize content
-    file_count++;
-    return true;
+bool create_file_or_directory(const char *name, bool is_directory) {
+    return create_file(name, is_directory);
 }
 
 bool delete_file(const char *name) {
