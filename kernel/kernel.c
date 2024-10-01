@@ -1,7 +1,10 @@
-#include "os.h"
-#include "user.h"
-#include "fs.h"
-#include "terminal.h"
+#include "kernel.h"
+#include "drivers/keyboard.h"
+#include "drivers/mouse.h"
+#include "drivers/network.h"
+#include "fs/fs.h"
+#include "terminal/terminal.h"
+#include "user/user.h"
 #include "networking.h"
 
 void clear_screen() {
@@ -12,13 +15,35 @@ void clear_screen() {
     }
 }
 
-void _start() {
+void print_message(const char *message) {
+    char *video_memory = (char *)0xb8000;
+    int offset = 0;
+    while (*message) {
+        video_memory[offset * 2] = *message;
+        video_memory[offset * 2 + 1] = 0x07;
+        offset++;
+        message++;
+    }
+}
+
+void kernel_init() {
+    init_users();
+    init_file_system();
+    printf("Initialization complete. You can now boot the OS.\n");
+}
+
+void kernel_main() {
     clear_screen();
     print_message("Welcome to Privacy OS!");
+    keyboard_init();
+    mouse_init();
     start_tor(); // Start Tor during initialization
-    init_users(); // Initialize user accounts
+    network_init();
+    fs_init();
+    terminal_init();
+    user_init();
+    kernel_init(); // Initialize user accounts and file system
     login_prompt(); // Prompt for user login
-    init_file_system(); // Initialize file system
     run_terminal(); // Start the terminal
 
     while (1) {}
