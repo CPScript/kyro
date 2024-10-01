@@ -1,3 +1,6 @@
+> Kyro : Your in control
+* name change was made to fit the purpose o this operating system... "The name "Kyro" comes from the Greek word "kyrios," meaning "lord" or "master." This name suggests that the user is in control of their own data and privacy, which aligns with the principles of a privacy OS."
+
 ### **Want to contribute?**
 * I would love help with the development of this project. Create a request! <3
 
