@@ -18,15 +18,15 @@ void run_terminal() {
 }
 
 void process_adduser_command(const char *command) {
-    char username[USERNAME_LENGTH];
-    char password[PASSWORD_LENGTH];
+    char username[MAX_USERNAME_LENGTH];
+    char password[MAX_PASSWORD_LENGTH];
     sscanf(command + 8, "%11s %11s", username, password);
     add_user(username, password, false); // Regular user
 }
 
 void process_login_command(const char *command) {
-    char username[USERNAME_LENGTH];
-    char password[PASSWORD_LENGTH];
+    char username[MAX_USERNAME_LENGTH];
+    char password[MAX_PASSWORD_LENGTH];
     sscanf(command + 6, "%11s %11s", username, password);
     if (authenticate(username, password)) {
         printf("Login successful!\n");
@@ -36,9 +36,9 @@ void process_login_command(const char *command) {
 }
 
 void process_create_command(const char *command) {
-    char filename[FILENAME_LENGTH];
+    char filename[MAX_FILE_NAME_LENGTH];
     sscanf(command + 7, "%49s", filename);
-    create_file(filename);
+    create_file_or_directory(filename, false);
 }
 
 void process_command(const char *command) {
@@ -49,19 +49,19 @@ void process_command(const char *command) {
     } else if (strncmp(command, "create ", 7) == 0) {
         process_create_command(command);
     } else if (strncmp(command, "mkdir ", 6) == 0) {
-        char dirname[FILENAME_LENGTH];
+        char dirname[MAX_FILE_NAME_LENGTH];
         sscanf(command + 6, "%49s", dirname);
-        create_directory(dirname);
+        create_file_or_directory(dirname, true);
     } else if (strncmp(command, "rmdir ", 6) == 0) {
-        char dirname[FILENAME_LENGTH];
+        char dirname[MAX_FILE_NAME_LENGTH];
         sscanf(command + 6, "%49s", dirname);
         delete_directory(dirname);
     } else if (strncmp(command, "delete ", 7) == 0) {
-        char filename[FILENAME_LENGTH];
+        char filename[MAX_FILE_NAME_LENGTH];
         sscanf(command + 7, "%49s", filename);
         delete_file(filename);
     } else if (strncmp(command, "cat ", 4) == 0) {
-        char filename[FILENAME_LENGTH];
+        char filename[MAX_FILE_NAME_LENGTH];
         sscanf(command + 4, "%49s", filename);
         read_file(filename);
     } else if (strcmp(command, "ls") == 0) {
