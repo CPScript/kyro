@@ -111,17 +111,17 @@ To install Privacy OS, follow these steps:
   ```
 
 ### Terminal Commands
-* Here's a list of available commands:
+**Here's a list of available commands**:
 
-`adduser <username> <password>`: Create a new user.
-`login <username> <password>`: Log in to your account.
-`create <filename>`: Create a new file.
-`mkdir <dirname>`: Create a new directory.
-`delete <filename>`: Delete a file.
-`rmdir <dirname>`: Remove a directory.
-`ls`: List files and directories.
-`cat <filename>`: Display the contents of a file.
-`help`: Display a list of available commands.
+* `adduser <username> <password>`: Create a new user.
+* `login <username> <password>`: Log in to your account.
+* `create <filename>`: Create a new file.
+* `mkdir <dirname>`: Create a new directory.
+* `delete <filename>`: Delete a file.
+* `rmdir <dirname>`: Remove a directory.
+* `ls`: List files and directories.
+* `cat <filename>`: Display the contents of a file.
+* `help`: Display a list of available commands.
 
 ### Networking
 This OS supports basic networking capabilities. Upon first boot, it will check for Tor installation. If not installed, it will prompt for installation.
