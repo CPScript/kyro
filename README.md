@@ -1,5 +1,4 @@
-> Kyro : Your in control
-* name change was made to fit the purpose o this operating system... "The name "Kyro" comes from the Greek word "kyrios," meaning "lord" or "master." This name suggests that the user is in control of their own data and privacy, which aligns with the principles of a privacy OS."
+> Kyro : Your in control / A simple and user-friendly operating system designed with privacy and security in mind.
 
 ### **Want to contribute?**
 * I would love help with the development of this project. Create a request! <3
@@ -21,7 +20,6 @@
 * Implement drivers
 * Make a team to maintain and fix all errors
 
-  a simple and user-friendly operating system designed with privacy and security in mind. This document provides an overview of how to install, configure, and use Privacy OS effectively.
 
 ## Table of Contents
 
