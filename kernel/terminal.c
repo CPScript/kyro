@@ -8,6 +8,9 @@ void execute_command(const char *command) {
     if (strcmp(command, "exit") == 0) {
         print_message("Exiting...");
         // Handle exit logic
+    } else if (strncmp(command, "cat ", 4) == 0) {
+        char *filename = command + 4;
+        read_file(filename); // Call the read file function
     } else if (strcmp(command, "help") == 0) {
         print_message("Available commands: help, exit, ls, cat <filename>");
     } else if (strncmp(command, "cat ", 4) == 0) {
