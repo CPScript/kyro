@@ -3,19 +3,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TOR_CHECK_DIR "tor_check"
-#define FIRST_BOOT_FLAG TOR_CHECK_DIR "/first_boot_flag"
+#define TOR_CHECK "tor_check"
+#define FIRST_BOOT_FLAG TOR_CHECK "/first_boot_flag"
 
 int check_tor_installed() {
-    // Try to run 'tor --version' to check if Tor is installed
-    int result = system("tor --version");
+    // Check if Tor is installed
+    int result = system("command -v tor > /dev/null 2>&1");
     return (result == 0); // Returns 1 if installed, 0 if not
 }
 
 void install_tor() {
     print_message("Installing Tor...");
 
-    const char *install_command = "apt-get install tor -y"; // This is a Debian-based system, so this should work
+    const char *install_command = "apt-get install tor -y"; // This is a Debian-based system
 
     int result = system(install_command);
 
@@ -26,7 +26,6 @@ void install_tor() {
     }
 }
 
-// Function to check if the first boot flag directory exists and if the flag file exists
 int is_first_boot() {
     FILE *file = fopen(FIRST_BOOT_FLAG, "r");
     if (file) {
@@ -37,8 +36,7 @@ int is_first_boot() {
 }
 
 void create_first_boot_flag() {
-    system("mkdir -p " TOR_CHECK_DIR);
-
+    system("mkdir -p " TOR_CHECK);
     FILE *file = fopen(FIRST_BOOT_FLAG, "w");
     if (file) {
         fclose(file);
@@ -47,7 +45,6 @@ void create_first_boot_flag() {
     }
 }
 
-// Function to start Tor
 void start_tor() {
     if (is_first_boot()) {
         print_message("First boot detected. Installing Tor...");
