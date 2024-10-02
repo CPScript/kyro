@@ -1,3 +1,3 @@
 > Kyro : Your in control / A simple and user-friendly operating system designed with privacy and security in mind.
 
-# I broke the entire thing to the point of no return... I will be re-writing the whole OS tonight :D (crying inside)
+* I'm still figuring out everything, I need a good "file system" (how the dir and file configuration should be setup properly)
