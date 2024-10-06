@@ -11,9 +11,9 @@ _start:
     int 0x10
     jmp .next_char
 .done:
-    ; Load the kernel
-    mov ax, 0x1000   ; Load kernel at 0x1000
+
+    mov ax, 0x1000
     jmp ax
 
 section .data
-message db 'Booting Kyro OS...', 0
+message db 'Booting...', 0
