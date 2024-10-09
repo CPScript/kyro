@@ -1,1 +1,1 @@
-### arch based command line privacy os
+### arch based command line privacy os for usb
